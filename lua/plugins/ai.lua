@@ -57,7 +57,7 @@ return {
     "yetone/avante.nvim",
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     -- ⚠️ must add this setting! ! !
-    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+    build = vim.fn.has "win32" ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
       or "make",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
@@ -124,8 +124,7 @@ return {
     "yetone/avante.nvim",
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     -- ⚠️ must add this setting! ! !
-    build = vim.fn.has("win32") ~= 0
-      and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+    build = vim.fn.has "win32" ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
       or "make",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
@@ -136,11 +135,12 @@ return {
       -- this file can contain specific instructions for your project
       instructions_file = "avante.md",
       -- for example
-      provider = "qwen",
       providers = {
-        qwen = {
-          endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-          model = "kimi-k2-thinking",
+        ali = {
+          endpoint = "https://api-inference.modelscope.cn/v1",
+          model = "deepseek-ai/DeepSeek-V3.2",
+          -- IMPORTMENT
+          api_key_name = "MODELSCOPE_ACCESS_TOKEN",
           timeout = 30000, -- Timeout in milliseconds
           extra_request_body = {
             temperature = 0.75,
@@ -165,6 +165,7 @@ return {
             max_tokens = 32768,
           },
         },
+        provider = "ali",
       },
     },
     dependencies = {
@@ -198,12 +199,12 @@ return {
       },
       {
         -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
+        "MeanderingProgrammer/render-markdown.nvim",
         opts = {
           file_types = { "markdown", "Avante" },
         },
         ft = { "markdown", "Avante" },
       },
     },
-  }
+  },
 }
