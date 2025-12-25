@@ -141,7 +141,7 @@ return {
         modelscope = {
           __inherited_from = "openai",  -- 👈 关键！继承 openai
           endpoint = "https://api-inference.modelscope.cn/v1",
-          model = "deepseek-ai/DeepSeek-V3.2",
+          model = "Qwen/Qwen3-235B-A22B-Thinking-2507",
           -- IMPORTMENT
           api_key_name = "MODELSCOPE_ACCESS_TOKEN",
           timeout = 30000, -- Timeout in milliseconds

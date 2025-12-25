@@ -4,6 +4,7 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 local unmap = vim.keymap.del
+local tmux = require("utils.tmux")
 
 map("i", "jk", "<ESC>")
 
@@ -17,8 +18,8 @@ unmap("v", "<leader>/")
 map("n", "<C-_>", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<C-_>", "gc",  { desc = "toggle comment", remap = true })
 
-map("n", "<C-h>", function()
-end, { desc = "switch window left" })
+
+map("n", "<C-h>", function() tmux.move("west") end , { desc = "switch window left" })
 
 map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
