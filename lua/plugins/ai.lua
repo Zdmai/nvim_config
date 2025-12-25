@@ -135,8 +135,11 @@ return {
       -- this file can contain specific instructions for your project
       instructions_file = "avante.md",
       -- for example
+      provider = "modelscope",
+
       providers = {
-        ali = {
+        modelscope = {
+          __inherited_from = "openai",  -- 👈 关键！继承 openai
           endpoint = "https://api-inference.modelscope.cn/v1",
           model = "deepseek-ai/DeepSeek-V3.2",
           -- IMPORTMENT
@@ -157,6 +160,7 @@ return {
           },
         },
         moonshot = {
+          __inherited_from = "openai",
           endpoint = "https://api.moonshot.ai/v1",
           model = "kimi-k2-0711-preview",
           timeout = 30000, -- Timeout in milliseconds
@@ -165,7 +169,6 @@ return {
             max_tokens = 32768,
           },
         },
-        provider = "ali",
       },
     },
     dependencies = {
