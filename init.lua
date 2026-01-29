@@ -44,7 +44,19 @@ vim.pack.add({
 	-- opencode
 	{ src = 'https://github.com/NickvanDyke/opencode.nvim' },
 
+	-- todo-comments
+	{ src = 'https://github.com/folke/todo-comments.nvim' },
+
 })
+
+
+-- NOTE:
+-- :TodoQuickFix  -- This uses the quickfix list to show all todos in your project.
+-- :TodoLocList   -- This uses the location list to show all todos in your project.
+-- :Trouble todo  -- List all project todos in trouble
+-- :TodoTelescope -- Search through all project todos with Telescope
+
+require("todo-comments").setup({ })
 
 require("which-key").setup({
 	preset = "helix",

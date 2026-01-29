@@ -111,7 +111,7 @@ map("n", "<leader>Z",  function() Snacks.zen.zoom() end, { desc = "Toggle Zoom" 
 map("n", "<leader>.",  function() Snacks.scratch() end, { desc = "Toggle Scratch Buffer" })
 map("n", "<leader>S",  function() Snacks.scratch.select() end, { desc = "Select Scratch Buffer" })
 map("n", "<leader>n",  function() Snacks.notifier.show_history() end, { desc = "Notification History" })
-map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
+-- map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
 map("n", "<leader>cR", function() Snacks.rename.rename_file() end, { desc = "Rename File" })
 map({ "n", "v" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse", })
 map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
@@ -139,6 +139,7 @@ map({ "n", "t" }, "[[",         function() Snacks.words.jump(-vim.v.count1) end,
 --
 --
 
+-- flash jump
 map({ "n", "x", "o" }, 	"s", function() require("flash").jump() end, { desc = "Flash" })
 map({ "n", "x", "o" }, 	"S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
 map({ "o" }, 			"r", function() require("flash").remote() end, { desc = "Remote Flash" })
