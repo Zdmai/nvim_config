@@ -97,6 +97,9 @@ map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo Histo
 map("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
 
 -- LSP
+
+map("n", "<leader>lf", function() vim.lsp.buf.format() end, { desc = "format the buffer" })
+
 map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
 -- map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
