@@ -95,10 +95,18 @@ map("n", "<leader>sq", function() Snacks.picker.qflist() end, { desc = "Quickfix
 map("n", "<leader>sR", function() Snacks.picker.resume() end, { desc = "Resume" })
 map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo History" })
 map("n", "<leader>uC", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
+
 -- LSP
-map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
-map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
-map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+-- map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+map("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
+map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
+
+-- map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
+-- map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
+-- map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
 map("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
 map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" })
 map("n", "gai", function() Snacks.picker.lsp_incoming_calls() end, { desc = "C[a]lls Incoming" })
@@ -145,3 +153,12 @@ map({ "n", "x", "o" }, 	"S", function() require("flash").treesitter() end, { des
 map({ "o" }, 			"r", function() require("flash").remote() end, { desc = "Remote Flash" })
 map({ "x", "o" }, 		"R", function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
 map({ "c" }, 			"<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
+
+-- 快速跳转诊断
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ wrap = true, count = -1 })
+end, { desc = "prev diagnostic" })
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ wrap = true, count = 1 })
+end, { desc = "next diagnostic" })
+
