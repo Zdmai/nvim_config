@@ -1,12 +1,12 @@
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
-map({ 'i' }, "jk", "<esc>", { desc="jk map to esc" })
+map({ 'i' }, "jk", "<esc>", { desc = "jk map to esc" })
 
 -- map esc to exit terminal mode in Term
-map('t', 'jk', [[<C-\><C-n>]], { desc="escape to normal mode from terminal mode" })
+map('t', 'jk', [[<C-\><C-n>]], { desc = "escape to normal mode from terminal mode" })
 
-map('n', '<F8>', ':TagbarToggle<CR>', { desc='tagbar' })
+map('n', '<F8>', ':TagbarToggle<CR>', { desc = 'tagbar' })
 
 -- Required for `opts.events.reload`.
 vim.o.autoread = true
@@ -14,26 +14,30 @@ vim.o.autoread = true
 -- for opencode
 -- use neovim's terminal
 vim.g.opencode_opts = {
-  provider = {
-    enabled = "snacks",
-    snacks = {
-      -- ...
+    provider = {
+        enabled = "snacks",
+        snacks = {
+            -- ...
+        }
     }
-  }
 }
 
 
 -- Recommended/example keymaps.
 -- opencode
-map({ "n", "x" }, "<leader>aas", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
-map({ "n", "x" }, "<leader>aac", function() require("opencode").select() end,                          { desc = "Execute opencode action…" })
-map({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end,                          { desc = "Toggle opencode" })
+map({ "n", "x" }, "<leader>aas", function() require("opencode").ask("@this: ", { submit = true }) end,
+    { desc = "Ask opencode…" })
+map({ "n", "x" }, "<leader>aac", function() require("opencode").select() end, { desc = "Execute opencode action…" })
+map({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
 
-map({ "n", "x" }, "go",  function() return require("opencode").operator("@this ") end,        { desc = "Add range to opencode", expr = true })
-map("n",          "goo", function() return require("opencode").operator("@this ") .. "_" end, { desc = "Add line to opencode", expr = true })
+map({ "n", "x" }, "go", function() return require("opencode").operator("@this ") end,
+    { desc = "Add range to opencode", expr = true })
+map("n", "goo", function() return require("opencode").operator("@this ") .. "_" end,
+    { desc = "Add line to opencode", expr = true })
 
-map("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll opencode up" })
-map("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
+map("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end, { desc = "Scroll opencode up" })
+map("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end,
+    { desc = "Scroll opencode down" })
 
 
 -- snacks keymaps
@@ -47,7 +51,8 @@ map("n", "<leader>e", function() Snacks.explorer() end, { desc = "File Explorer"
 
 -- find
 map("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Buffers" })
-map("n", "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, { desc = "Find Config File" })
+map("n", "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
+    { desc = "Find Config File" })
 map("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Find Files" })
 map("n", "<leader>fw", function() Snacks.picker.grep() end, { desc = "Find Files" })
 map("n", "<leader>fW", function() Snacks.picker.grep_word() end, { desc = "Find Files" })
@@ -117,20 +122,20 @@ map("n", "gao", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "C[a
 map("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" })
 map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "LSP Workspace Symbols" })
 -- Other
-map("n", "<leader>z",  function() Snacks.zen() end, { desc = "Toggle Zen Mode" })
-map("n", "<leader>Z",  function() Snacks.zen.zoom() end, { desc = "Toggle Zoom" })
-map("n", "<leader>.",  function() Snacks.scratch() end, { desc = "Toggle Scratch Buffer" })
-map("n", "<leader>S",  function() Snacks.scratch.select() end, { desc = "Select Scratch Buffer" })
-map("n", "<leader>n",  function() Snacks.notifier.show_history() end, { desc = "Notification History" })
+map("n", "<leader>z", function() Snacks.zen() end, { desc = "Toggle Zen Mode" })
+map("n", "<leader>Z", function() Snacks.zen.zoom() end, { desc = "Toggle Zoom" })
+map("n", "<leader>.", function() Snacks.scratch() end, { desc = "Toggle Scratch Buffer" })
+map("n", "<leader>S", function() Snacks.scratch.select() end, { desc = "Select Scratch Buffer" })
+map("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification History" })
 -- map("n", "<leader>bd", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
 map("n", "<leader>cR", function() Snacks.rename.rename_file() end, { desc = "Rename File" })
 map({ "n", "v" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse", })
 map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
 map("n", "<leader>un", function() Snacks.notifier.hide() end, { desc = "Dismiss All Notifications" })
-map("n", "<c-/>",      function() Snacks.terminal() end, { desc = "Toggle Terminal" })
-map("n", "<c-_>",      function() Snacks.terminal() end, { desc = "which_key_ignore" })
-map({ "n", "t" }, "]]",         function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference", })
-map({ "n", "t" }, "[[",         function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference", })
+map("n", "<c-/>", function() Snacks.terminal() end, { desc = "Toggle Terminal" })
+map("n", "<c-_>", function() Snacks.terminal() end, { desc = "which_key_ignore" })
+map({ "n", "t" }, "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference", })
+map({ "n", "t" }, "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference", })
 -- map("n", "<leader>N",
 -- 	function()
 -- 		Snacks.win({
@@ -151,17 +156,16 @@ map({ "n", "t" }, "[[",         function() Snacks.words.jump(-vim.v.count1) end,
 --
 
 -- flash jump
-map({ "n", "x", "o" }, 	"s", function() require("flash").jump() end, { desc = "Flash" })
-map({ "n", "x", "o" }, 	"S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
-map({ "o" }, 			"r", function() require("flash").remote() end, { desc = "Remote Flash" })
-map({ "x", "o" }, 		"R", function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
-map({ "c" }, 			"<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
+map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
+map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
+map({ "o" }, "r", function() require("flash").remote() end, { desc = "Remote Flash" })
+map({ "x", "o" }, "R", function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
+map({ "c" }, "<c-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
 
 -- 快速跳转诊断
 vim.keymap.set("n", "[d", function()
-	vim.diagnostic.jump({ wrap = true, count = -1 })
+    vim.diagnostic.jump({ wrap = true, count = -1 })
 end, { desc = "prev diagnostic" })
 vim.keymap.set("n", "]d", function()
-	vim.diagnostic.jump({ wrap = true, count = 1 })
+    vim.diagnostic.jump({ wrap = true, count = 1 })
 end, { desc = "next diagnostic" })
-
